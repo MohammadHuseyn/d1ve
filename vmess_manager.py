@@ -60,7 +60,7 @@ def init_running():
 
 def restart_v2ray():
     print("Restarting V2Ray container...")
-    subprocess.run(["docker", "restart", "v2ray"], check=False)
+    subprocess.run(["docker", "restart", "d1ve"], check=False)
 
 def create_vmess(ps=None):
     if not ps:
