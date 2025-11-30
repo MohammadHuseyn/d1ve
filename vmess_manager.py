@@ -135,19 +135,32 @@ def delete_vmess(name=None):
             json.dump(run_cfg,f,indent=2)
         print("Removed from running.json")
     restart_v2ray()
-
+    
+    
 def clear():
     confirm = input("Are you sure you want to clear all configs? (yes/no): ").strip().lower()
     if confirm != "yes":
         print("Aborted.")
         return
-    # empty files but don't delete
+
+    # empty list.txt
     open(LIST_FILE,"w").close()
-    open(RUNNING,"w").close()
+
+    # reset running.json
+    base = {
+        "inbounds": [{"port": 0, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "tcp"}}],
+        "outbounds": [{"protocol": "freedom", "settings": {}}]
+    }
+    with open(RUNNING,"w") as f:
+        json.dump(base,f,indent=2)
+
+    # clear config files
     for f in os.listdir(CONFIG_DIR):
         open(os.path.join(CONFIG_DIR,f),"w").close()
+
     restart_v2ray()
     print("All configs cleared.")
+
 
 def get_vmess(name=None):
     if not name:
