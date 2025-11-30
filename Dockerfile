@@ -30,8 +30,6 @@ RUN wget -q https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-l
 # copy app
 COPY app.py . 
 COPY start.sh . 
-COPY .env . 
-COPY settings.json .
 
 # copy built frontend
 COPY --from=node-build /frontend/dist ./frontend/dist
@@ -41,8 +39,8 @@ RUN mkdir -p configs
 VOLUME [ "/app/configs" ]
 
 # expose port
-ENV SUBSCRIPTION_PORT=8090
-EXPOSE ${SUBSCRIPTION_PORT}
+ENV PORT=8090
+EXPOSE ${PORT}
 
 RUN chmod +x start.sh
 CMD ["./start.sh"]

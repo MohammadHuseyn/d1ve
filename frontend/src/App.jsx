@@ -58,7 +58,7 @@ export default function App() {
 
     const subscriptionPath = () => {
         const urlPath = settings.SUBSCRIPTION_URL || "/subscription";
-        const port = settings.SUBSCRIPTION_PORT || window.location.port || (window.location.protocol === "https:" ? 443 : 80);
+        const port = settings.PORT || window.location.port || (window.location.protocol === "https:" ? 443 : 80);
         const proto = window.location.protocol;
         const host = window.location.hostname;
         // show explicit port
@@ -157,27 +157,27 @@ export default function App() {
                     <div>
                         <strong>Settings</strong>
                         <div className="small" style={{ marginTop: 6, whiteSpace: "pre-line" }}>
-                            {`Only SUBSCRIPTION_URL is editable here. To change VMESS_IP, VMESS_PORT or SUBSCRIPTION_PORT edit the .env and reload the container (all runtime configs will be lost).`}
+                            {`Only SUBSCRIPTION_URL is editable here. To change IP or PORT edit the .env and reload the container (all runtime configs will be lost).`}
                         </div>
                     </div>
                 </div>
 
                 <div className="settings" style={{ marginTop: 12 }}>
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <label className="small">VMESS_IP</label>
-                        <input className="input" value={settings.VMESS_IP || ""} disabled />
+                        <label className="small">SUBSCRIPTION_URL</label>
+                        <input className="input" value={settings.SUBSCRIPTION_URL || ""} onChange={e => setSettings({ ...settings, SUBSCRIPTION_URL: e.target.value })} />
+                    </div>
+                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        <label className="small">IP</label>
+                        <input className="input" value={settings.IP || ""} disabled />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        <label className="small">HOST_PORT</label>
+                        <input className="input" value={settings.HOST_PORT || ""} disabled />
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                         <label className="small">VMESS_PORT</label>
                         <input className="input" value={settings.VMESS_PORT || ""} disabled />
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <label className="small">SUBSCRIPTION_URL</label>
-                        <input className="input" value={settings.SUBSCRIPTION_URL || ""} onChange={e => setSettings({ ...settings, SUBSCRIPTION_URL: e.target.value })} />
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <label className="small">SUBSCRIPTION_PORT</label>
-                        <input className="input" value={settings.SUBSCRIPTION_PORT || ""} disabled />
                     </div>
                 </div>
                 <div style={{ marginTop: 12, display: "flex", gap: 8 }}>

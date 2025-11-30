@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+# Required env vars
+: "${HOST_PORT:?HOST_PORT is required as env var}"
+: "${IP:?IP is required as env var}"
+: "${VMESS_PORT:?VMESS_PORT is required as env var}"
+
 # ensure working dir
 cd /app
 
@@ -8,7 +13,7 @@ cd /app
 mkdir -p configs
 touch list.txt
 
-# create default running.json if missing (app.py also does this but keep safe)
+# create default running.json if missing
 if [ ! -f running.json ]; then
   cat > running.json <<'JSON'
 {
@@ -25,5 +30,13 @@ if [ ! -f running.json ]; then
 JSON
 fi
 
-# run the Flask app (it will spawn v2ray subprocess)
-exec gunicorn -w 4 -b 0.0.0.0:${SUBSCRIPTION_PORT} app:app
+# Determine mode: debug vs production
+DEBUG=${DEBUG:-false}
+
+if [ "$DEBUG" = "true" ]; then
+  echo "[DEBUG] Running Flask directly"
+  exec python3 app.py
+else
+  echo "[INFO] Running production with Gunicorn"
+  exec gunicorn -w 4 -b 0.0.0.0:${PORT} app:app
+fi
