@@ -26,4 +26,4 @@ JSON
 fi
 
 # run the Flask app (it will spawn v2ray subprocess)
-exec python3 app.py
+exec gunicorn -w 4 -b 0.0.0.0:${SUBSCRIPTION_PORT} app:app
