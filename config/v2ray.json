@@ -1,0 +1,25 @@
+{
+  "inbounds": [
+    {
+      "port": PORT_REPLACE,
+      "listen": "SERVER_IP_REPLACE",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "18a9a274-8806-45fb-8bb2-f784bfe62b5f",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
+}
