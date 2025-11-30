@@ -38,7 +38,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 def start_server():
     global httpd
     httpd = socketserver.TCPServer(("", SUBSCRIPTION_PORT), Handler)
-    print(f"Subscription server at http://0.0.0.0:{SUBSCRIPTION_PORT}{SUBSCRIPTION_URL}")
+    print(f"Subscription server at http://{VMESS_IP}:{SUBSCRIPTION_PORT}{SUBSCRIPTION_URL}")
     httpd.serve_forever()
 
 def stop_server():
