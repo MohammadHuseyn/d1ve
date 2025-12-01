@@ -172,12 +172,12 @@ export default function App() {
                         <input className="input" value={settings.IP || ""} disabled />
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <label className="small">HOST_PORT</label>
-                        <input className="input" value={settings.HOST_PORT || ""} disabled />
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                         <label className="small">VMESS_PORT</label>
                         <input className="input" value={settings.VMESS_PORT || ""} disabled />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        <label className="small">HOST_PORT</label>
+                        <input className="input" value={settings.HOST_PORT || ""} disabled />
                     </div>
                 </div>
                 <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
