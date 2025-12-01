@@ -34,9 +34,11 @@
     ```
 3. **Access D1ve**
 Once running, you can manage your application at:
-```http://[IP]:[HOST_PORT]/[SUBSCRIPTION_URL]
+```
+http://[IP]:[HOST_PORT]/[SUBSCRIPTION_URL]
 ```
 # Environment Variables
+these are the env needed to use D1ve.
 ## IP
 Your server’s IP address
 ## VMESS_PORT
